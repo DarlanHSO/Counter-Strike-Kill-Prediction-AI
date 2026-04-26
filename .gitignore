@@ -1,0 +1,12 @@
+# Dados (Parquet, CSV)
+data/*
+!data/.gitkeep
+
+.env
+.ipynb_checkpoints/
+__pycache__/
+.venv/
+*.pyc
+matchdata_split/
+
+*.parquet

@@ -1,0 +1,19 @@
+services:
+  spark-jupyter:
+    image: jupyter/pyspark-notebook:latest
+    container_name: spark-container
+    user: root
+    working_dir: /home/jovyan/work
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"   # Jupyter
+      - "4040:4040"   # Spark UI (application)
+      - "7077:7077"   # (caso use cluster Spark standalone no futuro)
+    volumes:
+      - .:/home/jovyan/work
+    environment:
+      # Evita avisos de bind em alguns SOs
+      - SPARK_LOCAL_IP=0.0.0.0
+    # 8 GB na máquina: limitar o container para não matar o host
+      - GRANT_SUDO=no
+    mem_limit: 5g
+    memswap_limit: 6g
